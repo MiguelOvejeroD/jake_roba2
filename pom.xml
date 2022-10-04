@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.despegar.fulfillment.scm</groupId>
+        <artifactId>ff-scm-master-pom</artifactId>
+        <version>2.0.12</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.despegar.fulfillment</groupId>
+    <artifactId>fas-txm</artifactId>
+    <version>2.2.1-SNAPSHOT</version>
+
+    <scm>
+        <connection>scm:git:git@github.com:despegar/fas-txm.git</connection>
+        <developerConnection>scm:git:git@github.com:despegar/fas-txm.git</developerConnection>
+        <url>https://github.com/despegar/fas-txm</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <properties>
+
+        <!--Begin master pom variables -->
+        <port>9291</port>
+        <endpoint>fas-txm</endpoint>
+        <main-class>com.despegar.fulfillment.fas.txm.App</main-class>
+        <health-check-token>fastxmsauth</health-check-token>
+        <health-check-timeout>180</health-check-timeout>
+        <shutdown-timeout>90</shutdown-timeout>
+        <!--End master pom variables -->
+
+        <spring.framework.version>5.2.5.RELEASE</spring.framework.version>
+        <fasterxml.version>2.9.8</fasterxml.version>
+        <jackson-databind.version>2.9.10.1</jackson-databind.version>
+        <spring.version>4.2.6.RELEASE</spring.version>
+        <slf4j-api.version>1.7.2</slf4j-api.version>
+        <logback-classic.version>1.1.5</logback-classic.version>
+        <logging.version>0.0.4</logging.version>
+        <newrelic.version>3.38.0</newrelic.version>
+        <hazelcast.version>3.6.2</hazelcast.version>
+        <commons-httpclient.version>3.1</commons-httpclient.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <junit.version>4.12</junit.version>
+        <wiremock.version>2.5.1</wiremock.version>
+        <commons-io.version>2.5</commons-io.version>
+        <httpclient.version>4.5.1</httpclient.version>
+        <fas-api.version>1.10.60</fas-api.version>
+        <guava.version>18.0</guava.version>
+        <mockito-java8.version>2.1.0</mockito-java8.version>
+        <library-rest.version>1.0.17</library-rest.version>
+        <library-snapshot.version>0.0.6</library-snapshot.version>
+        <jetty-spring-server.version>3.2.21</jetty-spring-server.version>
+        <ff.lookout.version>0.0.26</ff.lookout.version>
+        <ff.lookout.bridge.version>0.0.21</ff.lookout.bridge.version>
+        <command-flow.lookout-bridge.version>1.2</command-flow.lookout-bridge.version>
+        <library.utils.version>1.0.12</library.utils.version>
+        <hibernate.version>5.3.6.Final</hibernate.version>
+        <mysql-connector.version>6.0.5</mysql-connector.version>
+        <hikari.version>2.5.1</hikari.version>
+        <quartz-scheduler.version>2.2.3</quartz-scheduler.version>
+        <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
+        <atp3-client.version>2.2.1</atp3-client.version>
+        <ff-properties.version>1.6.12</ff-properties.version>
+        <!-- this is only added to be able to exclude a conflicting dependency -->
+        <reflections.version>0.9.10</reflections.version>
+        <yauaa.version>5.6</yauaa.version>
+        <command-flow.engine.version>2.4.3</command-flow.engine.version>
+        <command-flow.mysql-service.version>2.1.7</command-flow.mysql-service.version>
+        <command-flow.tomcat-jdbc.version>8.5.19</command-flow.tomcat-jdbc.version>
+    </properties>
+
+	<dependencies>
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.13.2</version>
+		</dependency>
+	
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.17</version>
+		</dependency>
+
+
+	</dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>version</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/log4j.properties</exclude>
+                        <exclude>**/log4j.xml</exclude>
+                        <exclude>**/logback.xml</exclude>
+                        <exclude>**/conf/env/**</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit47</artifactId>
+                        <version>${maven.surefire.plugin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.19.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.despegar.deploys</groupId>
+                <artifactId>cloudia-java8-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>cloudia</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>tar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="content">
+    <h1>Github user to ATP/LDAP</h1>
+    <div id="form-block">
+        <div class="input-block">
+            <label>Github username</label>
+            <input type="text" id="input-text">
+            <button id="submit" value="submit" name="submit">submit</button>
+        </div>
+        <div id="response-block">
+        </div>
+    </div>
+    <p id="api-text">* API: https://backoffice.despegar.com/github2ldap/api/users/{username}</p>
+</div>
+
+<script>
+    $("#submit").click(function(e){
+        e.preventDefault();
+        var usr = $('#input-text').val()
+        $.ajax({
+            type: 'GET',
+            crossDomain: true,
+            url: "{{api_uri}}"+usr,
+            success: function(data){
+                $('#response-block').empty();
+                var resp = jQuery.parseJSON(data);
+                if(resp.valid == true){
+                    var p1 = "<p><label>LDAP: </label>"+resp.ldap_user+"</p>"
+                    var p2 = "<p><label>ATP: </label>"+resp.atp_user+"</p>"
+                    var p3 = "<p><label>Active: </label>"+resp.active+"</p>"
+                    var p4 = "<p><label>Account control code: </label>"+resp.account_control_code+"</p>"
+                    $('#response-block').append(p1,p2,p3,p4);
+                }else{
+                    var p1 = "<p><label>Usuario invalido</p>"
+                    var p2 = "<p><label>Comment: </label>"+resp.comment+"</p>"
+                    $('#response-block').append(p1,p2);
+                }
+            },
+        })
+    })
+</script>
+
+<style type="text/css">
+body{
+    background-color: whitesmoke;
+}
+
+.content{
+    margin-top: 3%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    width: 60%;
+    background-color: #fff;
+    margin-left: 20%;
+    text-align: center;
+    height: 100%;
+}
+
+.content h1 {
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+
+ #form-block{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#form-block p label{
+    font-weight: bold;
+}
+
+#response-block{
+    margin-left:30%;
+    text-align:left;
+}
+
+#response-block p{
+    margin-top:.5em;
+    margin-bottm:.5em;
+}
+
+#api-text{
+    margin-top:15%;
+    color:gray;
+}
+</style>
+
+{% endblock %}

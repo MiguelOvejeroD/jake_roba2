@@ -1,0 +1,15 @@
+#!/bin/bash
+
+APPLICATION="jake"
+PROJECT_ROOT="$(dirname "$0")"
+DIRECTORY="target"
+
+cd "$PROJECT_ROOT"
+
+if [ ! -d "$DIRECTORY" ]; then
+    mkdir "$PROJECT_ROOT/$DIRECTORY"
+fi
+
+TARGET_FILE="$DIRECTORY/$APPLICATION"-$1.tar
+
+tar --exclude='app/build' -cvf "$TARGET_FILE" app

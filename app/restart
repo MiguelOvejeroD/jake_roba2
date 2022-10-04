@@ -1,0 +1,2 @@
+python3 app/Application.py stop
+python3 app/Application.py start

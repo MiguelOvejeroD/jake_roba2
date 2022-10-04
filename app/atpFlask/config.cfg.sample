@@ -1,0 +1,4 @@
+ATP_CLIENT_ID = 'my-client-id'
+ATP_CLIENT_SECRET = 'my-client-secret'
+ATP_ENVIRONMENT = 'https://auth.despegar.com/'
+SECRET_KEY = b'random string to be used for encryption'

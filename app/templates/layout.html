@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Github2ldap</title>
+    {% for item in css %}
+        <link rel=stylesheet type=text/css href="{{item}}">
+    {% endfor %}
+</head>
+<body>
+
+    {% block header %}
+    {{header}}
+    {% endblock %}
+
+    {% block body %}
+    {% endblock %}
+
+    {% block footer %}
+    {{footer}}
+    {% endblock %}
+</body>
+</html>
+
+<style type="text/css">
+    .nevo-common-footer{
+        position: absolute;
+        bottom: 0px;
+        width: 100%
+    }
+</style>
+
+{% for script in js %}
+<link rel=script type=text/javascript href="{{ script }}">
+{% endfor %}

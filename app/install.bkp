@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#install basics
+sudo /usr/local/scripts/install_python_libraries.sh
+sudo /usr/local/scripts/install-cffi-prerequisits.sh
+
+#install requests
+sudo /usr/local/scripts/pip-install-requests.sh
+
+#install flask
+sudo /usr/local/scripts/install-python3-flask.sh
+
+#install python jose
+sudo /usr/local/scripts/install-python-jose.sh
+
+#install pymongo
+sudo /usr/local/scripts/install-python3-pymongo.sh
+
+#install ldap3
+sudo /usr/local/scripts/install-python3-ldap3.sh
+
+#install httplib2
+sudo /usr/local/scripts/install-httplib2.sh
+
+#install oauth2client
+sudo /usr/local/scripts/install-python3-oauth2client.sh
+
+#install apiclient
+sudo /usr/local/scripts/install-python3-apiclient.sh
+
+#install discovery
+sudo /usr/local/scripts/install-python3-discovery.sh
+
+#install newrelic
+sudo /usr/local/scripts/install-python3-newrelic.sh
+
+#install flask_cors
+sudo /usr/local/scripts/install-python3-flaskcors.sh
